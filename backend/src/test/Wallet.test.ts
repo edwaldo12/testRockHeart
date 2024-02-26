@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import WalletController from "../controllers/WalletController";
 import WalletRepository from "../repositories/WalletRepository";
 import Error500Server from "../middleware/error/Error500";
-import { WalletAttributes } from "../interfaces/WalletInterface/WalletInterface";
 import { Wallet } from "../models/ModelWallet";
 
 const mockRequest = (body = {}) => {
@@ -13,10 +12,10 @@ const mockRequest = (body = {}) => {
 };
 
 const mockResponse = () => {
-  const res = {} as Response;
+  const res: Partial<Response> = {};
   res.status = jest.fn().mockReturnThis();
   res.json = jest.fn().mockReturnThis();
-  return res;
+  return res as Response;
 };
 
 const mockNext = jest.fn();
